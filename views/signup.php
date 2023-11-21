@@ -30,6 +30,10 @@ session_start();
                         if ($auth->validate() == null) {
                             $user = new Users();
                             $user->createUser($_POST['username'], $_POST['password']);
+
+                            session_start();
+                            $_SESSION['username'] = $_POST['username'];
+                            header("location: home.php");
                         }
                     }
                     ?>
