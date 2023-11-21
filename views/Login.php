@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club Members Management System Project-Login</title>
-    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="../../src/css/style.css">
 </head>
 
 <body>
@@ -15,6 +16,16 @@
             <div class="px-16  mx-auto">
                 <div>
                     <?php
+                    require_once('../controllers/roleController.php');
+                    $Role = new RoleController();
+
+                    if (isset($_SESSION['username'])) {
+                        if ($Role->checkRole($_SESSION['username']) == 'user') {
+                            header('location: home.php');
+                        } elseif ($Role->checkRole($_SESSION['username']) == 'admin') {
+                            header('location: dashboard.php');
+                        }
+                    }
                     if (isset($_POST['Login'])) {
                         include('../models/users.php');
                         $user = new Users();

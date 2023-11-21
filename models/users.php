@@ -1,5 +1,7 @@
 <?php
-include('db.php');
+include_once('db.php');
+include_once('../controllers/roleController.php');
+
 class Users extends Db
 {
     protected function checkUser($username)
@@ -8,7 +10,7 @@ class Users extends Db
 
         if (!$stmt->execute(array($username))) {
             $stmt = null;
-            header('location: ../views/signup.php?error=querystatmentfailed');
+            header('location: ../views/auth/signup.php?error=querystatmentfailed');
             exit();
         }
 
@@ -25,7 +27,7 @@ class Users extends Db
 
         if (!$stmt->execute(array($username, $hased_Password))) {
             $stmt = null;
-            header('location: ../views/signup.php?error=querystatmentfailed');
+            header('location: ../views/auth/signup.php?error=querystatmentfailed');
             exit();
         }
     }
@@ -55,7 +57,7 @@ class Users extends Db
             array_push($errors, "wrong password");
             return $errors;
         }
-        $stmt = $this->connect()->prepare("SELECT username FROM users WHERE username = ?; ");
+        $stmt = $this->connect()->prepare("SELECT username,role FROM users WHERE username = ?; ");
         if (!$stmt->execute(array($username))) {
             $stmt = null;
             array_push($errors, "statment failed");
@@ -64,6 +66,8 @@ class Users extends Db
         $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
         session_start();
         $_SESSION['username'] = $user[0]['username'];
-        header("location: ../views/home.php");
+
+        $role = new RoleController();
+        $role->checkRole($user[0]['username']) == 'admin' ?  header("location: ../views/dashboard.php") :  header("location: ../views/home.php");;
     }
 }

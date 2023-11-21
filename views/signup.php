@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +6,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club Members Management System Project- Register</title>
-    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="../../src/css/style.css">
 </head>
 
 <body>
@@ -18,8 +16,13 @@ session_start();
             <div class="px-16  mx-auto">
                 <div class="text-red">
                     <?php
+
+                    if (isset($_SESSION['username'])) {
+                        header('location: home.php');
+                    }
                     include('../controllers/authController.php');
-                    // include('../models/users.php');
+
+
 
                     if (isset($_POST['Register'])) {
                         $auth = new authController($_POST['username'], $_POST['password']);
