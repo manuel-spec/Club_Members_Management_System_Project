@@ -11,6 +11,6 @@ ________________________________________________________________________________
 Setting Up the Database
 
 To set up the required MySQL database for the application, follow these steps:
-cd controller \n
-cd seeders  \n
+cd controller \
+cd seeders  \
 php seeder.php
