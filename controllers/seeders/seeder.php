@@ -37,6 +37,9 @@ class Seeder
                     ('user2', :hashedPassword, CURRENT_TIMESTAMP, 'user'),
                     ('admin', :hashedPassword, CURRENT_TIMESTAMP, 'admin');
             ";
+            $sql2 = "
+            CREATE TABLE `clubmembers`.`events` (`id` INT NOT NULL AUTO_INCREMENT , `posted_by` VARCHAR(255) NOT NULL , `event_title` VARCHAR(255) NOT NULL , `event_description` VARCHAR(255) NOT NULL , `time_stamp` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+            ";
 
             $hashed_password = password_hash('password', PASSWORD_DEFAULT);
             $stmt = $conn->prepare($sql);
