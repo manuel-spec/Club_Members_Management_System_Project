@@ -20,6 +20,18 @@ class Users extends Db
             return false;
         }
     }
+
+    public function getUser()
+    {
+        $stmt = $this->connect()->prepare("SELECT * FROM users; ");
+
+        if (!$stmt->execute()) {
+            $stmt = null;
+            header('location: ../views/auth/signup.php?error=querystatmentfailed');
+            exit();
+        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function createUser($username, $password)
     {
         $stmt = $this->connect()->prepare("INSERT INTO users(username, password) values(?, ?); ");

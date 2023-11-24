@@ -142,6 +142,14 @@
 
           </div>
           <!--Table-->
+          <?php
+          include_once '../models/users.php';
+
+          $users = new Users();
+
+          $users->getUser()[0]['email'];
+          $users->getUser()[0]['role'];
+          ?>
           <div class="p-4 font-bold text-gray-600">Clients</div>
           <div class="grid  lg:grid-cols-1  md:grid-cols-1 p-4 gap-3">
             <div class="col-span-2 flex flex-auto items-center justify-between  p-5 bg-white rounded shadow-sm">
@@ -152,79 +160,41 @@
                       Name
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Title
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
+                      email
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Role
                     </th>
-                    <th scope="col" class="relative px-6 py-3">
-                      <span class="sr-only">Edit</span>
-                    </th>
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="flex items-center">
-                        <div class="flex-shrink-0 h-10 w-10">
-                          <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
-                        </div>
-                        <div class="ml-4">
-                          <div class="text-sm font-medium text-gray-900">
-                            Jane Cooper
+                  <?php foreach ($users->getUser() as $key => $value) { ?>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="flex-shrink-0 h-10 w-10">
+                            <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
                           </div>
-                          <div class="text-sm text-gray-500">
-                            jane.cooper@example.com
-                          </div>
-                        </div>
-                      </div>
-                    </td>
+                          <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-900 text-center">
+                              <?php echo $users->getUser()[$key]['username']; ?>
+                            </div>
 
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        Active
-                      </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      Admin
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="flex items-center">
-                        <div class="flex-shrink-0 h-10 w-10">
-                          <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
-                        </div>
-                        <div class="ml-4">
-                          <div class="text-sm font-medium text-gray-900">
-                            Jane Cooper
-                          </div>
-                          <div class="text-sm text-gray-500">
-                            jane.cooper@example.com
                           </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        Active
-                      </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      Admin
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                    </td>
-                  </tr>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                          <?php echo $users->getUser()[$key]['email'] == NULL ? "NULL" : $users->getUser()[$key]['email']; ?>
+                        </span>
+                      </td>
 
+                      <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900"><?php echo $users->getUser()[$key]['role']; ?></a>
+                      </td>
+                    </tr>
+                  <?php } ?>
                   <!-- More people... -->
                 </tbody>
               </table>
