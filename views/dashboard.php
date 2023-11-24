@@ -73,8 +73,15 @@
             <h4 class="font-bold text-gray-500 p-1 ">Dashboard</h4>
 
           </div>
-          <p class="text-gray-400 p-1">30th October 2020 | 1st November 2020</p>
+          <p class="text-gray-400 p-1"><?php echo date("l M-d-y"); ?></p>
         </div>
+        <?php
+        include_once '../models/Events.php';
+
+        include_once '../models/users.php';
+        $e = new Event();
+        $u = new Users();
+        ?>
         <div class="bg-blue-50 min-h-screen">
           <div class=" mt-8 grid lg:grid-cols-3 sm:grid-cols-2 p-4 gap-10 ">
             <!--Grid starts here-->
@@ -94,9 +101,9 @@
 
             <div class="flex items-center justify-between p-5 bg-white rounded shadow-sm">
               <div>
-                <div class="text-sm text-gray-400 ">Check Out Today</div>
+                <div class="text-sm text-gray-400 ">Total Events</div>
                 <div class="flex items-center pt-1">
-                  <div class="text-3xl font-medium text-gray-600 ">44</div>
+                  <div class="text-3xl font-medium text-gray-600 "><?php echo $e->totalEvents; ?></div>
                 </div>
               </div>
               <div class="text-pink-500">
@@ -108,9 +115,9 @@
 
             <div class="flex items-center justify-between p-5 bg-white rounded shadow-sm">
               <div>
-                <div class="text-sm text-gray-400 ">Total Properties</div>
+                <div class="text-sm text-gray-400 ">Total Users</div>
                 <div class="flex items-center pt-1">
-                  <div class="text-3xl font-medium text-gray-600 ">1000</div>
+                  <div class="text-3xl font-medium text-gray-600 "><?php echo $u->totalUsers; ?></div>
                 </div>
               </div>
               <div class="text-pink-500">
@@ -134,7 +141,6 @@
             </div>
 
             <div class=" flex flex-col   p-5 bg-white rounded shadow-sm">
-              <b class="flex flex-row text-gray-500">Occupancy Percentage</b>
               <canvas class="p-5" id="chartRadar"></canvas>
             </div>
 
@@ -173,7 +179,7 @@
                       <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                           <div class="flex-shrink-0 h-10 w-10">
-                            <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+                            <img class="h-10 w-10 rounded-full" src="https://www.gravatar.com/avatar/05b6d7cc7c662bf81e01b39254f88a49?d=identicon" alt="">
                           </div>
                           <div class="ml-4">
                             <div class="text-sm font-medium text-gray-900 text-center">
@@ -209,77 +215,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Chart line -->
-  <script>
-    const labels = ["January", "February", "March", "April", "May", "June"];
-    const data = {
-      labels: labels,
-      datasets: [{
-        label: "My First dataset",
-        backgroundColor: "hsl(252, 82.9%, 67.8%)",
-        borderColor: "hsl(252, 82.9%, 67.8%)",
-        data: [0, 10, 5, 2, 20, 30, 45],
-      }, ],
-    };
-
-    const configLineChart = {
-      type: "line",
-      data,
-      options: {},
-    };
-
-    var chartLine = new Chart(
-      document.getElementById("chartLine"),
-      configLineChart
-    );
-  </script>
-
-  <script>
-    const dataRadar = {
-      labels: [
-        "Reservation 1",
-        "Reservation 2",
-        "Reservation 3",
-        "Reservation 4",
-        "Reservation 5",
-        "Reservation 6",
-        "Reservation 7",
-      ],
-      datasets: [{
-          label: "My First Dataset",
-          data: [65, 59, 90, 81, 56, 55, 40],
-          fill: true,
-          backgroundColor: "rgba(255,105,180)",
-          borderColor: "rgb(255,20,147)",
-          pointBackgroundColor: "rgb(133, 105, 241)",
-          pointBorderColor: "#fff",
-          pointHoverBackgroundColor: "#fff",
-          pointHoverBorderColor: "rgb(133, 105, 241)",
-        },
-        {
-          label: "My Second Dataset",
-          data: [28, 48, 40, 19, 96, 27, 100],
-          fill: true,
-          backgroundColor: "rgba(255,105,180)",
-          borderColor: "rgb(0,191,255)",
-          pointBackgroundColor: "rgb(54, 162, 235)",
-          pointBorderColor: "#fff",
-          pointHoverBackgroundColor: "#fff",
-          pointHoverBorderColor: "rgb(54, 162, 235)",
-        },
-      ],
-    };
-
-    const configRadarChart = {
-      type: "radar",
-      data: dataRadar,
-      options: {},
-    };
-
-    var chartBar = new Chart(
-      document.getElementById("chartRadar"),
-      configRadarChart
-    );
-  </script>
 
 </body>
 

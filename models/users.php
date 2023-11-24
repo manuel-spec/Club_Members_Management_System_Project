@@ -4,6 +4,15 @@ include_once('../controllers/roleController.php');
 
 class Users extends Db
 {
+    public $totalUsers = 0;
+
+    function __construct()
+    {
+
+        foreach ($this->getUser() as $key => $value) {
+            $this->totalUsers++;
+        }
+    }
     protected function checkUser($username)
     {
         $stmt = $this->connect()->prepare("SELECT username FROM users WHERE username = ?; ");

@@ -2,6 +2,16 @@
 include_once 'db.php';
 class Event extends Db
 {
+    public $totalEvents;
+    function __construct()
+    {
+        $stmt = $this->connect()->prepare('SELECT * FROM events;');
+        $stmt->execute();
+        $ev = $stmt->fetchAll();
+        foreach ($ev as $key => $value) {
+            $this->totalEvents++;
+        }
+    }
     public function create($posted_by, $event_title, $event_description)
     {
         $stmt = $this->connect()->prepare('INSERT INTO events(posted_by, event_title, event_desc) values(?, ?,?);');
@@ -17,6 +27,10 @@ class Event extends Db
     {
         $stmt = $this->connect()->prepare('SELECT * FROM events;');
         $stmt->execute();
-        return $stmt->fetchAll();
+        $ev = $stmt->fetchAll();
+        foreach ($ev as $key => $value) {
+            $this->totalEvents += count($ev[$key]);
+        }
+        return $ev;
     }
 }
