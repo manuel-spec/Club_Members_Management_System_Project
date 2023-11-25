@@ -44,9 +44,9 @@ class Users extends Db
     public function createUser($username, $password)
     {
         $stmt = $this->connect()->prepare("INSERT INTO users(username, password) values(?, ?); ");
-        $hased_Password = password_hash($password, PASSWORD_DEFAULT);
+        $hashed_Password = password_hash($password, PASSWORD_DEFAULT);
 
-        if (!$stmt->execute(array($username, $hased_Password))) {
+        if (!$stmt->execute(array($username, $hashed_Password))) {
             $stmt = null;
             header('location: ../views/auth/signup.php?error=querystatmentfailed');
             exit();
