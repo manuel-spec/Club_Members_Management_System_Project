@@ -33,4 +33,34 @@ class Event extends Db
         }
         return $ev;
     }
+    public function readOne($id)
+    {
+        $stmt = $this->connect()->prepare('SELECT * FROM events WHERE id = ?;');
+        $stmt->execute(array($id));
+        $ev = $stmt->fetch();
+
+        return $ev;
+    }
+    public function updateOne($id, $title, $desc)
+    {
+        $stmt = $this->connect()->prepare("UPDATE events SET event_title = ?, event_desc=? WHERE id = ?;");
+
+        if (!$stmt->execute(array($title, $desc, $id))) {
+            $stmt = null;
+            header('location: update.php?error=querystatmentfailed');
+            exit();
+        } else {
+            header("location: events.php");
+        }
+    }
+    function deleteOne($id)
+    {
+        $stmt = $this->connect()->prepare("DELETE FROM events WHERE id = ?;");
+
+        if (!$stmt->execute(array($id))) {
+            $stmt = null;
+            header('location: events.php?error=querystatmentfailed');
+            exit();
+        }
+    }
 }
