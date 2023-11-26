@@ -44,7 +44,7 @@ $event->read();
                     </div>
                     <?php
                     if (isset($_POST['update'])) {
-                        $event->updateOne($_POST['title'], $_POST['desc'], $_GET['id']);
+                        $event->updateOne($_GET['id'], $_POST['title'], $_POST['desc']);
                     }
                     ?>
                 </div>

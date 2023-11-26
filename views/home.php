@@ -43,36 +43,21 @@ session_start();
 
     <div class="container mx-auto my-10 sm:px-20  flex justify-center">
 
-        <!--  Post  -->
-        <div class=" rounded overflow-hidden border w-full lg:w-6/12 md:w-6/12 bg-white mx-3 md:mx-0 lg:mx-0">
-            <div class="w-full flex justify-between p-3">
-                <div class="flex">
-                    <div class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
-                        <img src="https://avatars0.githubusercontent.com/u/38799309?v=4" alt="profilepic">
-                    </div>
-                    <span class="pt-1 ml-2 font-bold text-sm">admin</span>
+        <section class="bg-white dark:bg-gray-900">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">We invest in the world’s potential</h1>
+                <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Welcome to our Creative Programming Development Division! We are a dynamic and innovative team dedicated to pushing the boundaries of software development. With our talented programmers, designers, and creative thinkers, we strive to craft unique and imaginative solutions to complex problems.</p>
+                <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+                    <a href="events.php" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                        Get started
+                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+
                 </div>
-                <span class="px-2 hover:bg-gray-300 cursor-pointer rounded"><i class="fas fa-ellipsis-h pt-2 text-lg"></i></span>
             </div>
-            <div class="px-3 pb-2">
-                <div class="pt-2">
-                    <i class="far fa-heart cursor-pointer"></i>
-                    <span class="text-sm text-gray-400 font-medium">12 likes</span>
-                </div>
-                <div class="pt-1">
-                    <div class="mb-2 text-sm">
-                        <span class="font-medium mr-2">braydoncoyer</span> Lord of the Rings is my favorite film-series. One day I'll make my way to New Zealand to visit the Hobbiton set!
-                    </div>
-                </div>
-                <div class="text-sm mb-2 text-gray-400 cursor-pointer font-medium">View all 14 comments</div>
-                <div class="mb-2">
-                    <div class="mb-2 text-sm">
-                        <span class="font-medium mr-2">razzle_dazzle</span> Dude! How cool! I went to New Zealand last summer and had a blast taking the tour! So much to see! Make sure you bring a good camera when you go!
-                    </div>
-                </div>
-                <a href="" class="button">Register</a>
-            </div>
-        </div>
+        </section>
 
     </div>
 

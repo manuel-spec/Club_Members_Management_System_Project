@@ -50,6 +50,10 @@ class Users extends Db
             $stmt = null;
             header('location: ../views/auth/signup.php?error=querystatmentfailed');
             exit();
+        } else {
+            session_start();
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = 'user';
         }
     }
 

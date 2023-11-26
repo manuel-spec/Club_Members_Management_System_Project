@@ -53,7 +53,7 @@ class Event extends Db
             header("location: events.php");
         }
     }
-    function deleteOne($id)
+    public function deleteOne($id)
     {
         $stmt = $this->connect()->prepare("DELETE FROM events WHERE id = ?;");
 
