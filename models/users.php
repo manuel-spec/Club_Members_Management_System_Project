@@ -52,6 +52,28 @@ class Users extends Db
             exit();
         }
     }
+
+    public function updateUser($username, $email, $role)
+    {
+        $stmt = $this->connect()->prepare("UPDATE users SET email = ?, role=? WHERE username = ?;");
+
+        if (!$stmt->execute(array($email, $role, $username))) {
+            $stmt = null;
+            header('location: update.php?error=querystatmentfailed');
+            exit();
+        }
+    }
+    public function deleteUser($username)
+    {
+        echo $username;
+        $stmt = $this->connect()->prepare("DELETE FROM users WHERE username = ?;");
+
+        if (!$stmt->execute(array($username))) {
+            $stmt = null;
+            header('location: update.php?error=querystatmentfailed');
+            exit();
+        }
+    }
     public function loginUser($username, $password)
     {
         $errors = array();
@@ -86,9 +108,11 @@ class Users extends Db
         }
         $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
         session_start();
+        echo $user[0]['role'];
+        $_SESSION['role'] = $user[0]['role'];
         $_SESSION['username'] = $user[0]['username'];
 
         $role = new RoleController();
-        $role->checkRole($user[0]['username']) == 'admin' ?  header("location: ../views/dashboard.php") :  header("location: ../views/home.php");;
+        $role->checkRole($user[0]['username']) == 'admin' ?  header("location: ../views/dashboard.php") :  header("location: ../views/events.php");
     }
 }

@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +17,7 @@ session_start();
     include_once '../models/Events.php';
     $p = new Event();
     $events = $p->read();
+
     foreach ($events as $e) { ?>
         <div class="container mx-auto my-10 sm:px-20 flex justify-center">
             <!--  Post  -->
@@ -38,13 +38,26 @@ session_start();
                     </div>
                     <div class="pt-1">
                         <div class="mb-2 text-sm">
-                            <span class="font-medium mr-2"><?php echo print($e[3]); ?></span> <?php echo $e[4]; ?>
+                            <span class="font-medium mr-2"><?php echo $e[3]; ?></span> <?php echo $e[4]; ?>
                         </div>
                     </div>
+                    <?php
+                    if ($_SESSION['role'] == "admin") { ?>
+                        <form action="" method="post">
+                            <input type="submit" value="Update" class="rounded-xl py-2 px-2 text-[#002D74]" name="Update">
+                            <input type="submit" value="Delete" class="rounded-xl py-2 px-2 text-[#D4413A]" name="Delete">
+                        </form>
+                    <?php  } else { ?>
+                        <a href="" class="button">Register</a>
+                    <?php } ?>
 
-                    <a href="" class="button">Register</a>
+                    <?php if (isset($_POST['Update'])) {
+                        header('location: updateEvent.php');
+                    }
+                    ?>
                 </div>
             </div>
+
         </div>
     <?php } ?>
 

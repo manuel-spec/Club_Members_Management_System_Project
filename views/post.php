@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+if ($_SESSION['role'] != "admin") {
+    header('location: Login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -3,10 +3,19 @@
         <img src="../src/imgs/csec.png" alt="" class="w-1/4">
     </div>
     <div>
-        <a href="dashboard.php" class="p-2">Dashboard</a>
-        <a href="events.php" class="p-2">Events</a>
-        <a href="post.php" class="p-2">Post</a>
 
+        <?php
+        if ($_SESSION['role'] == "admin") { ?>
+            <a href="dashboard.php" class="p-2">Dashboard</a>
+            <a href="events.php" class="p-2">Events</a>
+            <a href="post.php" class="p-2">Post</a>
+        <?php } else { ?>
+            <div>
+                <a href="" class="p-2">Home</a>
+                <a href="events.php" class="p-2">events</a>
+                <a href="" class="p-2">RegisteredEvents</a>
+            </div>
+        <?php } ?>
     </div>
     <div class="text-sm w-64 ">
         <input class="bg-gray-100 focus:outline-none focus:shadow-outline border border-gray-400 rounded py-1 px-4 block w-full appearance-none leading-normal " type="text" placeholder="Search">

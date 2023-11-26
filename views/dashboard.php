@@ -5,7 +5,9 @@ include_once '../models/Events.php';
 include_once '../models/users.php';
 $e = new Event();
 $u = new Users();
-
+if ($_SESSION['role'] != "admin") {
+  header("location: Login.php");
+}
 
 ?>
 <!DOCTYPE html>

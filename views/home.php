@@ -20,9 +20,8 @@ session_start();
         </div>
         <div>
             <a href="" class="p-2">Home</a>
-            <a href="" class="p-2">Home</a>
-            <a href="" class="p-2">Home</a>
-            <a href="" class="p-2">Home</a>
+            <a href="events.php" class="p-2">events</a>
+            <a href="" class="p-2">RegisteredEvents</a>
         </div>
         <div class="text-sm w-64 ">
             <input class="bg-gray-100 focus:outline-none focus:shadow-outline border border-gray-400 rounded py-1 px-4 block w-full appearance-none leading-normal " type="text" placeholder="Search">

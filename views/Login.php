@@ -27,10 +27,10 @@
                         }
                     }
                     if (isset($_POST['Login'])) {
-                        include('../models/users.php');
+                        include_once('../models/users.php');
                         $user = new Users();
                         foreach ($user->loginUser($_POST['username'], $_POST['password']) as $errors) {
-                            print($errors);
+                            print("<p class='text-[#FF0000] text-center'>$errors</p>");
                         }
                     }
                     ?>
