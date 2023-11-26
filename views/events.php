@@ -51,9 +51,7 @@ session_start();
                         <a href="" class="button">Register</a>
                     <?php } ?>
 
-                    <?php if (isset($_POST['Update'])) {
-                        header('location: updateEvent.php');
-                    }
+
                     ?>
                 </div>
             </div>
