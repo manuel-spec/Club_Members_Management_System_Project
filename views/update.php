@@ -1,7 +1,9 @@
 <?php
 session_start();
 include_once($_SERVER['DOCUMENT_ROOT'] . '/models/users.php');
-
+if (!isset($_POST['EditUser'])) {
+    header("location: Login.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -53,25 +55,21 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/models/users.php');
     </nav>
 
     <div>
-        <form action="" method="post" class="container mx-auto my-10 sm:px-20  flex justify-center">
+        <div action="" method="post" class="p-4 mx-auto my-10 sm:px-20  flex justify-around">
             <div class=" rounded overflow-hidden border w-full lg:w-6/12 md:w-6/12 bg-white mx-3 md:mx-0 lg:mx-0">
-                <div class="heading text-center font-bold text-2xl m-5 text-gray-800" <?php ?></div>
-                    <style>
-                        body {
-                            background: white !important;
-                        }
-                    </style>
-                    <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
-                        <input class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Title" type="text" name="title" value="<?php ?>" required>
+                <p class="text-center border p-4"><?php echo $_POST['username']; ?></p>
+                <form action="" method="post" class="mt-4 flex-row justify-center">
+                    <p><label for="username">userame:</label></p>
+                    <input class="bg-gray-100 focus:outline-none border border-gray-400 rounded py-1 px-4  appearance-none leading-normal " type="text" placeholder="" value="<?php echo $_POST['username']; ?>">
 
-                        <div class="buttons flex mb-2">
-                            <div class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">Cancel</div>
-                            <button class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500" type="submit" name="Post">Post</button>
-                        </div>
-                    </div>
-                </div>
-        </form>
-    </div>
+                    <p><label for="username">email:</label></p>
+                    <input class="bg-gray-100 focus:outline-none border border-gray-400 rounded py-1 px-4  appearance-none leading-normal " type="text" placeholder="" value="<?php echo $_POST['email']; ?>"><br>
+
+                    <p><label for="username">role:</label></p>
+                    <input class="bg-gray-100 focus:outline-none border border-gray-400 rounded py-1 px-4  appearance-none leading-normal " type="text" placeholder="" value="<?php echo $_POST['role']; ?>">
+                </form>
+            </div>
+        </div>
 
 </body>
 

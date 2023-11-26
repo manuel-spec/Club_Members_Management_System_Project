@@ -1,3 +1,13 @@
+<?php
+session_start();
+include_once '../models/Events.php';
+
+include_once '../models/users.php';
+$e = new Event();
+$u = new Users();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,11 +87,7 @@
           <p class="text-gray-400 p-1"><?php echo date("l M-d-y"); ?></p>
         </div>
         <?php
-        include_once '../models/Events.php';
 
-        include_once '../models/users.php';
-        $e = new Event();
-        $u = new Users();
         ?>
         <div class="bg-blue-50 min-h-screen">
           <div class=" mt-8 grid lg:grid-cols-3 sm:grid-cols-2 p-4 gap-10 ">
@@ -193,9 +199,14 @@
                         </span>
                       </td>
 
-                      <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
-                        <a class="text-indigo-600 hover:text-indigo-900" href="admin/update.php"><?php echo $users->getUser()[$key]['role']; ?></a>
-                      </td>
+                      <form action="update.php" method="post">
+                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                          <input type="hidden" name="username" value="<?php echo $users->getUser()[$key]['username']; ?> ">
+                          <input type="hidden" name="email" value="<?php echo $users->getUser()[$key]['email']; ?> ">
+                          <input type="hidden" name="role" value="<?php echo $users->getUser()[$key]['role']; ?> ">
+                          <button class="text-indigo-600 hover:text-indigo-900" type="submit" name="EditUser"><?php echo $users->getUser()[$key]['role']; ?></button>
+                        </td>
+                      </form>
                     </tr>
                   <?php } ?>
                   <!-- More people... -->
