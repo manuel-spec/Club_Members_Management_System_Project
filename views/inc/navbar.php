@@ -28,7 +28,11 @@
                 <div class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
                     <img src="https://avatars0.githubusercontent.com/u/38799309?v=4" alt="profilepic">
                 </div>
-                <span class="pt-1 ml-2 font-bold text-sm"><?php echo $_SESSION['username']; ?></span>
+                <form action="profile.php" method="post">
+                    <input type="hidden" value="<?php echo $_SESSION['username']; ?>" name="user">
+                    <button type="submit" class="pt-1 ml-2 font-bold text-sm" name="profile"><?php echo $_SESSION['username']; ?></a>
+                </form>
+
                 <a href="auth/logout.php" class="pt-1 ml-2 font-bold text-sm">Logout</a>
             </div>
 

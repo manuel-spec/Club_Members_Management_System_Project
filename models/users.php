@@ -29,7 +29,17 @@ class Users extends Db
             return false;
         }
     }
+    public function getOneUser($username)
+    {
+        $stmt = $this->connect()->prepare("SELECT * FROM users WHERE username = ?; ");
 
+        if (!$stmt->execute(array($username))) {
+            $stmt = null;
+            header('location: ../views/auth/signup.php?error=querystatmentfailed');
+            exit();
+        }
+        return $stmt->fetch();
+    }
     public function getUser()
     {
         $stmt = $this->connect()->prepare("SELECT * FROM users; ");
