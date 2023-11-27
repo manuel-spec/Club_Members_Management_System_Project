@@ -30,7 +30,7 @@ if ($_SESSION['role'] != "admin") {
 
     <div class="flex flex-col  space-y-5 justify-between min-h-screen w-60 px-2 py-4 bg-gray-50">
 
-      <div class=" flex items-center justify-between text-gray-600 text-3xl px-5"><b>Reservations</b></div>
+      <div class=" flex items-center justify-between text-gray-600 text-3xl px-5"><b>Dashboard</b></div>
 
       <div class="flex flex-col flex-auto">
         <div class="p-2 hover:bg-pink-100">
@@ -58,14 +58,7 @@ if ($_SESSION['role'] != "admin") {
             <a class="font-regular text-gray-500 hover:text-pink-600" href="post.php">Post</a>
           </div>
         </div>
-        <div class="p-2 hover:bg-pink-100">
-          <div class="flex flex-row space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-            </svg>
-            <h4 class="font-regular text-gray-500 hover:text-pink-600">Services</h4>
-          </div>
-        </div>
+
 
       </div>
 
@@ -82,8 +75,6 @@ if ($_SESSION['role'] != "admin") {
       <div class="flex flex-col">
         <div class="flex flex-col bg-white h-24 p-2 drop-shadow-2xl">
           <div class="flex flex-row space-x-3">
-
-            <h4 class="font-bold text-gray-500 p-1 ">Dashboard</h4>
 
           </div>
           <p class="text-gray-400 p-1"><?php echo date("l M-d-y"); ?></p>
@@ -113,7 +104,7 @@ if ($_SESSION['role'] != "admin") {
               <div>
                 <div class="text-sm text-gray-400 ">Total Events</div>
                 <div class="flex items-center pt-1">
-                  <div class="text-3xl font-medium text-gray-600 "><?php echo $e->totalEvents; ?></div>
+                  <div class="text-3xl font-medium text-gray-600 "><?php echo $e->totalEvents ? $e->totalEvents != null : 0; ?></div>
                 </div>
               </div>
               <div class="text-pink-500">
@@ -140,28 +131,12 @@ if ($_SESSION['role'] != "admin") {
             <!-- Grid ends here..-->
 
           </div>
-
-
-
-          <div class=" mt-5 grid  lg:grid-cols-3  md:grid-cols-3 p-4 gap-3">
-
-            <div class="col-span-2 flex flex-col   p-8 bg-white rounded shadow-sm">
-              <b class="flex flex-row text-gray-500">Property Release for today</b>
-              <canvas class="p-5" id="chartLine"></canvas>
-            </div>
-
-            <div class=" flex flex-col   p-5 bg-white rounded shadow-sm">
-              <canvas class="p-5" id="chartRadar"></canvas>
-            </div>
-
-
-          </div>
           <!--Table-->
           <?php
           include_once '../models/users.php';
           $users = new Users();
           ?>
-          <div class="p-4 font-bold text-gray-600" id="body">Clients</div>
+          <div class="p-4 font-bold text-gray-600" id="body">Users</div>
           <div class="grid  lg:grid-cols-1  md:grid-cols-1 p-4 gap-3">
             <div class="col-span-2 flex flex-auto items-center justify-between  p-5 bg-white rounded shadow-sm">
               <table class="min-w-full divide-y divide-gray-200 table-auto">

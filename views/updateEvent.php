@@ -36,7 +36,7 @@ $event->read();
 
 
                     <input class="title bg-gray-100 border border-gray-300 p-2 mt-4 outline-none" spellcheck="false" placeholder="Title" type="text" name="title" value="<?php echo $event->readOne($_GET['id'])[2]; ?>" required>
-                    <textarea class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none mt-4" spellcheck="false" placeholder="" name="desc" required> <?php echo $event->readOne($_GET['id'])[4]; ?> </textarea>
+                    <textarea class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none mt-4" spellcheck="false" placeholder="" name="desc" required> <?php echo $event->readOne($_GET['id'])[3]; ?> </textarea>
 
                     <!-- buttons -->
                     <div class="buttons flex mt-4 justify-end">
