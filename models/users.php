@@ -165,4 +165,15 @@ class Users extends Db
             exit();
         }
     }
+    public function getActiveEvents($username)
+    {
+        $stmt = $this->connect()->prepare("SELECT * FROM eventsstatus where username = ?; ");
+
+        if (!$stmt->execute(array($username))) {
+            $stmt = null;
+            header('location: ../views/events.php?error=querystatmentfailed');
+            exit();
+        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

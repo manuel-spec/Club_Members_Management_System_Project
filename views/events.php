@@ -53,23 +53,30 @@ session_start();
                                 <button class="button" type="submit" name="registerFor">Register</button>
                             </form>
                         <?php } ?>
-                        <?php
-                        if (isset($_POST['registerFor'])) {
-                            include_once '../models/users.php';
-                            $reUser = new Users();
-                            $reUser->Register($_SESSION['username'], $value[2]);
-                        }
-                        ?>
-
 
                     </div>
+
                 </div>
 
+
             </div>
+            <?php
+            if (isset($_POST['registerFor'])) {
+                include_once '../models/users.php';
+                $reUser = new Users();
+                if ($value[2] == $reUser->getActiveEvents($_SESSION['username'])[0]['event_title']) {
+                    echo "<p class='text-center'>have been registered</p>";
+                } else {
+                    $reUser->Register($_SESSION['username'], $value[2]);
+                }
+            }
+            ?>
+
     <?php }
     } else {
         echo "<div class='container mx-auto my-10 sm:px-20 flex justify-center'><p>no events yet ...</p></div>";
     } ?>
+
 
     <?php
     if (isset($_POST['Update'])) {
