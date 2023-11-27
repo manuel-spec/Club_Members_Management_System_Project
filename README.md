@@ -15,4 +15,7 @@ set the credential of mysql user in the controller/seeder/seeder.php
 To set up the required MySQL database for the application, follow these steps: \
 cd controller \
 cd seeders  \
-php seeder.php
+php seeder.php \
+
+test users => username = "user1", password = "password"\
+admin user => username = "admin", password = "password"\
