@@ -16,7 +16,7 @@
             <div>
                 <a href="home.php" class="p-2">Home</a>
                 <a href="events.php" class="p-2">events</a>
-                <a href="" class="p-2">RegisteredEvents</a>
+                <a href="registeredEvents.php" class="p-2">RegisteredEvents</a>
             </div>
         <?php } ?>
     </div>

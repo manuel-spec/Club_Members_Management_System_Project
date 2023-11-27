@@ -155,4 +155,14 @@ class Users extends Db
     {
         move_uploaded_file($file['profile']['tmp_name'], '../storage/' . $file['profile']['name']);
     }
+    public function Register($username, $eventTitle)
+    {
+        $stmt = $this->connect()->prepare("INSERT INTO eventsstatus (username, event_title) values(?, ?); ");
+
+        if (!$stmt->execute(array($username, $eventTitle))) {
+            $stmt = null;
+            header('location: ../views/events.php?error=querystatmentfailed');
+            exit();
+        }
+    }
 }

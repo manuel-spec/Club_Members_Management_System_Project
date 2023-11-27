@@ -49,8 +49,17 @@ session_start();
                                 <input type="submit" value="Delete" class="rounded-xl py-2 px-2 text-[#D4413A]" name="Delete">
                             </form>
                         <?php  } else { ?>
-                            <a href="" class="button">Register</a>
+                            <form action="" method="post">
+                                <button class="button" type="submit" name="registerFor">Register</button>
+                            </form>
                         <?php } ?>
+                        <?php
+                        if (isset($_POST['registerFor'])) {
+                            include_once '../models/users.php';
+                            $reUser = new Users();
+                            $reUser->Register($_SESSION['username'], $value[2]);
+                        }
+                        ?>
 
 
                     </div>
