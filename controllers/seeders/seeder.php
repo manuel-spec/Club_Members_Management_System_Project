@@ -28,6 +28,8 @@ class Seeder
                     `password` VARCHAR(255) NOT NULL,
                     `time_stamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                     `role` VARCHAR(255) NOT NULL DEFAULT 'user',
+                    `email` VARCHAR(255) ,
+                    `profile` VARCHAR(255) DEFAULT 'https://avatars0.githubusercontent.com/u/38799309?v=4',
                     PRIMARY KEY (`id`)
                 ) ENGINE = InnoDB;
 

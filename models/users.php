@@ -29,6 +29,7 @@ class Users extends Db
             return false;
         }
     }
+
     public function getOneUser($username)
     {
         $stmt = $this->connect()->prepare("SELECT * FROM users WHERE username = ?; ");
@@ -77,6 +78,7 @@ class Users extends Db
             exit();
         }
     }
+
     public function deleteUser($username)
     {
         echo $username;
@@ -128,5 +130,29 @@ class Users extends Db
 
         $role = new RoleController();
         $role->checkRole($user[0]['username']) == 'admin' ?  header("location: ../views/dashboard.php") :  header("location: ../views/events.php");
+    }
+    public function updateProfile($username, $email, $password)
+    {
+        $stmt = $this->connect()->prepare("UPDATE users SET email = ?, password=? WHERE username = ?;");
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        if (!$stmt->execute(array($email, $hashed_password, $username))) {
+            $stmt = null;
+            header('location: update.php?error=querystatmentfailed');
+            exit();
+        }
+    }
+    public function addProfile($username, $filename)
+    {
+        $filenameStr = '' . $filename['profile']['name'];
+        $stmt = $this->connect()->prepare("UPDATE users SET profile = ? WHERE username = ?;");
+        if (!$stmt->execute(array($filenameStr, $username))) {
+            $stmt = null;
+            header('location: update.php?error=querystatmentfailed');
+            exit();
+        }
+    }
+    public function profileUpload($file)
+    {
+        move_uploaded_file($file['profile']['tmp_name'], '../storage/' . $file['profile']['name']);
     }
 }
