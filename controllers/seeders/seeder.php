@@ -40,15 +40,20 @@ class Seeder
                     ('admin', :hashedPassword, CURRENT_TIMESTAMP, 'admin');
             ";
             $sql2 = "
-            CREATE TABLE `clubmembers`.`events` (`id` INT NOT NULL AUTO_INCREMENT , `posted_by` VARCHAR(255) NOT NULL , `event_title` VARCHAR(255) NOT NULL , `event_description` VARCHAR(255) NOT NULL , `time_stamp` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+            CREATE TABLE `clubmembers`.`events` (`id` INT NOT NULL AUTO_INCREMENT , `posted_by` VARCHAR(255) NOT NULL , `event_title` VARCHAR(255) NOT NULL , `event_desc` VARCHAR(255) NOT NULL , `time_stamp` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
             ";
+            $sql3 = "CREATE TABLE `clubmembers`.`eventsStatus` (`id` INT NOT NULL AUTO_INCREMENT ,`username` VARCHAR(255) NOT NULL , `event_title` VARCHAR(255) NOT NULL ,)";
 
             $hashed_password = password_hash('password', PASSWORD_DEFAULT);
             $stmt = $conn->prepare($sql);
+            $stmt2 = $conn->prepare($sql2);
+            $stmt3 = $conn->prepare($sql3);
             $stmt->bindParam(':hashedPassword', $hashed_password);
             $stmt->bindParam(':hashedPassword', $hashed_password);
             $stmt->bindParam(':hashedPassword', $hashed_password);
             $stmt->execute();
+            $stmt2->execute();
+            $stmt3->execute();
             echo "DONE !!";
         } catch (Exception $e) {
             echo $e;
