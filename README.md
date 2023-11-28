@@ -19,3 +19,6 @@ php seeder.php \
 
 test users => username = "user1", password = "password"\
 admin user => username = "admin", password = "password"\
+start cmd and cd PATH/Club_Members_Management_System_Project\
+then start the server using \
+php -S loaclhost:PORT
