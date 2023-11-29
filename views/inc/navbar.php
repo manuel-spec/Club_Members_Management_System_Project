@@ -1,4 +1,6 @@
 <?php
+include_once __DIR__ . "/../../models/users.php";
+$profileName = new Users();
 
 ?>
 <nav class="flex items-center justify-around flex-wrap bg-white p-6 shadow-md">
@@ -29,7 +31,7 @@
         ?>
             <div class="flex flex-row">
                 <div class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
-                    <img src="https://avatars0.githubusercontent.com/u/38799309?v=4" alt="profilepic">
+                    <img src="<?php echo "/../../storage/" . $profileName->getProfile($_SESSION['username'])["profile"]; ?>" alt="profilepic">
                 </div>
                 <form action="profile.php" method="get">
                     <input type="hidden" value="<?php echo $_SESSION['username']; ?>" name="user">

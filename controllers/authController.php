@@ -1,5 +1,5 @@
 <?php
-include('../models/users.php');
+include_once('../models/users.php');
 class authController extends Users
 {
     public $username, $password;
@@ -21,7 +21,7 @@ class authController extends Users
 
         if ($this->checkUser($this->username)) {
             $this->errors = array();
-            array_push($this->errors, 'username alrady exists');
+            array_push($this->errors, 'username already exists');
         }
         return $this->errors;
     }

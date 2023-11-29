@@ -113,7 +113,7 @@ class Users extends Db
 
         if ($check_password == false) {
             $stmt = null;
-            array_push($errors, "wrong password");
+            array_push($errors, "wrong username or password");
             return $errors;
         }
         $stmt = $this->connect()->prepare("SELECT username,role FROM users WHERE username = ?; ");
@@ -154,6 +154,16 @@ class Users extends Db
     public function profileUpload($file)
     {
         move_uploaded_file($file['profile']['tmp_name'], '../storage/' . $file['profile']['name']);
+    }
+    public function getProfile($username)
+    {
+        $stmt = $this->connect()->prepare("SELECT profile FROM users WHERE username = ?;");
+        if (!$stmt->execute(array($username))) {
+            $stmt = null;
+            header('location: update.php?error=querystatmentfailed');
+            exit();
+        }
+        return $stmt->fetch();
     }
     public function Register($username, $eventTitle)
     {
