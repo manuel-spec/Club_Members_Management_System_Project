@@ -47,7 +47,7 @@
                     </div>
                     <div class="flex flex-row item-center gap-2">
                         <a href="signup.php" class="text-[#002D74]">Register</a>
-                        <a href="" class="px-4 text-[#002D74]">Forgot password?</a>
+                        <a href="auth/forgot-password.php" class="px-4 text-[#002D74]">Forgot password?</a>
                     </div>
                 </form>
 

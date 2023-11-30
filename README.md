@@ -13,6 +13,7 @@ Setting Up the Database
 set the credential of mysql user in the controller/seeder/seeder.php
 \
 To set up the required MySQL database for the application, follow these steps: \
+composer require phpmailer/phpmailer\
 cd controller \
 cd seeders  \
 php seeder.php \

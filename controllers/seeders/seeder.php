@@ -19,7 +19,9 @@ class Seeder
             // Create a new PDO instance for the clubmembers database
             $conn = new PDO("mysql:host=$this->servername;dbname=clubmembers", $this->username, $this->password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+            $add = "
+            ALTER TABLE `users` ADD  AFTER `profile`, ADD ;
+            ";
             // Create the users table and insert data
             $sql = "
                 CREATE TABLE IF NOT EXISTS `users` (
@@ -30,6 +32,8 @@ class Seeder
                     `role` VARCHAR(255) NOT NULL DEFAULT 'user',
                     `email` VARCHAR(255),
                     `profile` VARCHAR(255) DEFAULT 'https://avatars0.githubusercontent.com/u/38799309?v=4',
+                    `reset_token_hash` VARCHAR(64) NULL DEFAULT NULL,
+                    `reset_token_expire_at` DATETIME NULL DEFAULT NULL ADD UNIQUE (`reset_token_hash`),
                     PRIMARY KEY (`id`)
                 ) ENGINE = InnoDB;
 

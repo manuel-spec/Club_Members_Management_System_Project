@@ -29,7 +29,17 @@ class Users extends Db
             return false;
         }
     }
+    public function checkEmail($email)
+    {
+        $stmt = $this->connect()->prepare("SELECT email FROM users WHERE email = ?; ");
 
+        if (!$stmt->execute(array($email))) {
+            $stmt = null;
+            header('location: ../views/auth/signup.php?error=querystatmentfailed');
+            exit();
+        }
+        return $stmt->fetch();
+    }
     public function getOneUser($username)
     {
         $stmt = $this->connect()->prepare("SELECT * FROM users WHERE username = ?; ");
@@ -41,6 +51,7 @@ class Users extends Db
         }
         return $stmt->fetch();
     }
+
     public function getUser()
     {
         $stmt = $this->connect()->prepare("SELECT * FROM users; ");
@@ -52,12 +63,12 @@ class Users extends Db
         }
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function createUser($username, $password)
+    public function createUser($username, $password, $email)
     {
-        $stmt = $this->connect()->prepare("INSERT INTO users(username, password) values(?, ?); ");
+        $stmt = $this->connect()->prepare("INSERT INTO users(username, password, email) values(?, ?, ?); ");
         $hashed_Password = password_hash($password, PASSWORD_DEFAULT);
 
-        if (!$stmt->execute(array($username, $hashed_Password))) {
+        if (!$stmt->execute(array($username, $hashed_Password, $email))) {
             $stmt = null;
             header('location: ../views/auth/signup.php?error=querystatmentfailed');
             exit();

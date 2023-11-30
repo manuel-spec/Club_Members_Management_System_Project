@@ -85,19 +85,6 @@ if ($_SESSION['role'] != "admin") {
         <div class="bg-blue-50 min-h-screen">
           <div class=" mt-8 grid lg:grid-cols-3 sm:grid-cols-2 p-4 gap-10 ">
             <!--Grid starts here-->
-            <div class="flex items-center justify-between p-5 bg-white rounded shadow-sm">
-              <div>
-                <div class="text-sm text-gray-400 ">Check in Today</div>
-                <div class="flex items-center pt-1">
-                  <div class="text-3xl font-medium text-gray-600 ">34</div>
-                </div>
-              </div>
-              <div class="text-pink-500">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
-                </svg>
-              </div>
-            </div>
 
 
             <div class="flex items-center justify-between p-5 bg-white rounded shadow-sm">

@@ -25,26 +25,28 @@
 
 
                     if (isset($_POST['Register'])) {
-                        $auth = new authController($_POST['username'], $_POST['password']);
+                        $auth = new authController($_POST['username'], $_POST['password'], $_POST['email']);
+                        if ($auth->isValidEmail($_POST['email'])) {
+                            if ($auth->validate() == null) {
+                                $user = new Users();
+                                $user->createUser($_POST['username'], $_POST['password'], $_POST['email']);
 
+                                session_start();
+                                $_SESSION['username'] = $_POST['username'];
+                                header("location: home.php");
+                            }
+                        }
                         foreach ($auth->validate() as $key => $value) {
                             print('<p class="bg-red p-2">' . $value . '</p>');
-                        }
-                        if ($auth->validate() == null) {
-                            $user = new Users();
-                            $user->createUser($_POST['username'], $_POST['password']);
-
-                            session_start();
-                            $_SESSION['username'] = $_POST['username'];
-                            header("location: home.php");
                         }
                     }
                     ?>
                 </div>
                 <h1 class="font-bold text-2xl text-center mb-5 text-[#002D74]">Register</h1>
                 <form action="" method="post" class="flex flex-col gap-4">
-                    <input type="text" class='border rounded-xl px-5 py-3 text-center' placeholder="username" name="username">
-                    <input type="password" class='border rounded-xl px-5 py-3 text-center' placeholder="password" name="password">
+                    <input type="text" class='border rounded-xl px-5 py-3 text-center' placeholder="Email" name="email">
+                    <input type="text" class='border rounded-xl px-5 py-3 text-center' placeholder="Username" name="username">
+                    <input type="password" class='border rounded-xl px-5 py-3 text-center' placeholder="Password" name="password">
                     <button class="bg-[#002D74] rounded-xl py-2 text-white" type="submit" name="Register">Register</button>
                     <div class="mt-7 grid grid-col-3  text-grey-400">
                         <span class="text-center text-sm text-grey-400">OR</span>
