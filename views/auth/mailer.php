@@ -12,8 +12,8 @@ $mail->SMTPAuth = true;
 $mail->Host = "smtp.gmail.com";
 $mail->SMTPSecure = 'ssl';
 $mail->Port = 465;
-$mail->Username = "amanuelvac@gmail.com";
-$mail->Password = "ydzq bfpi ykmy tnwa";
+$mail->Username = ""; // gmail acount here
+$mail->Password = ""; // gmail app password here
 $mail->isHTML(true);
 
 return $mail;

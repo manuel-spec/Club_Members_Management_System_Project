@@ -44,7 +44,7 @@
                     $mail->addAddress($email);
                     $mail->Subject = "Password RESET";
                     $mail->Body = <<<END
-                    Click <a href="http://localhost:1011/views/auth/reset-password.php?token=$this->token">click me</a>
+                    Click <a href="http://localhost:1011/views/auth/reset-password.php?token=$this->token">click me</a> <p>to reset your password</p>
 
                     END;
                     try {
