@@ -32,8 +32,8 @@ class Seeder
                     `role` VARCHAR(255) NOT NULL DEFAULT 'user',
                     `email` VARCHAR(255),
                     `profile` VARCHAR(255) DEFAULT 'https://avatars0.githubusercontent.com/u/38799309?v=4',
-                    `reset_token_hash` VARCHAR(64) NULL DEFAULT NULL,
-                    `reset_token_expire_at` DATETIME NULL DEFAULT NULL ADD UNIQUE (`reset_token_hash`),
+                    `reset_token_hash` VARCHAR(64) NULL DEFAULT NULL UNIQUE,
+                    `reset_token_expire_at` DATETIME NULL DEFAULT NULL,
                     PRIMARY KEY (`id`)
                 ) ENGINE = InnoDB;
 
