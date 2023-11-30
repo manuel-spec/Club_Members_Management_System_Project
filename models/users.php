@@ -164,7 +164,23 @@ class Users extends Db
     }
     public function profileUpload($file)
     {
-        move_uploaded_file($file['profile']['tmp_name'], '../storage/' . $file['profile']['name']);
+        $path = $file['profile']['tmp_name'];
+        $fileSize = filesize($path);
+        $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+        $fileType = finfo_file($fileInfo, $path);
+        $allowdType = [
+            'image/png' => 'png',
+            'image/jpeg' => 'jpeg'
+        ];
+        if ($fileSize == 0) {
+            die("The FIle is Empty");
+        } elseif ($fileSize > 3145728) {
+            die("The File Is Too Large");
+        } elseif (!in_array($fileType, array_keys($allowdType))) {
+            die("File Not Allowed.");
+        } else {
+            move_uploaded_file($file['profile']['tmp_name'], '../storage/' . $file['profile']['name']);
+        }
     }
     public function getProfile($username)
     {
